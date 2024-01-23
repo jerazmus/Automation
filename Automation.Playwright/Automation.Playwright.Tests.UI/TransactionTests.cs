@@ -21,8 +21,8 @@ namespace Automation.Playwright.Tests.UI
             await ExpectURLAsync("inventory", true);
 
             // When & Then - add items to cart
-            await productsPage.AddItemsAsync(numberOfItems);
-            var cartPage = await productsPage.OpenCartAsync();
+            await productsPage.AddProductsAsync(numberOfItems);
+            var cartPage = await productsPage.Header.OpenCartAsync();
             await Expect(cartPage.CartItem).ToHaveCountAsync(numberOfItems);
 
             // When & Then - checkout and provide information

@@ -1,5 +1,6 @@
-﻿using Automation.Playwright.Core.Playwright;
-using Automation.Playwright.Core.UI.Pages.Login;
+﻿using Automation.Playwright.Core.Data;
+using Automation.Playwright.Core.Playwright;
+using Automation.Playwright.Core.UI.Pages;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
 
@@ -10,6 +11,7 @@ namespace Automation.Playwright.Core.UI
         [SetUp]
         protected async Task SetUp()
         {
+            DataProvider.Initialize();
             await Page.Context.Tracing.StartAsync(new()
             {
                 Screenshots = true,
@@ -38,7 +40,7 @@ namespace Automation.Playwright.Core.UI
             return new LoginPage(Page);
         }
 
-        protected async Task ExpectURLAsync(string url, bool partial = false)
+        protected async Task ExpectURLAsync(string url = "", bool partial = false)
         {
             var task = partial
                 ? Expect(Page).ToHaveURLAsync(new Regex($"^.*{url}.*$"))

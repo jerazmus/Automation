@@ -1,7 +1,6 @@
-﻿using Automation.Playwright.Core.UI.Pages.Checkout;
-using Microsoft.Playwright;
+﻿using Microsoft.Playwright;
 
-namespace Automation.Playwright.Core.UI.Pages.Cart
+namespace Automation.Playwright.Core.UI.Pages
 {
     public class CartPage : PageBase
     {

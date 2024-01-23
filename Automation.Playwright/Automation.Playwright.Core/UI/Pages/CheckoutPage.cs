@@ -1,6 +1,6 @@
 ﻿using Microsoft.Playwright;
 
-namespace Automation.Playwright.Core.UI.Pages.Checkout
+namespace Automation.Playwright.Core.UI.Pages
 {
     public class CheckoutPage : PageBase
     {
