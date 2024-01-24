@@ -8,7 +8,6 @@ namespace Automation.Playwright.Core.UI.Components
     {
         public ILocator CartButton
             => Page.Locator("#shopping_cart_container");
-
         public ILocator CartItemCount
             => Page.Locator(".shopping_cart_badge");
 

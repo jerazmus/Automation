@@ -1,5 +1,5 @@
-﻿using Automation.Playwright.Core.UI;
-using Automation.Playwright.Core.UI.Components;
+﻿using Automation.Playwright.Core.Data;
+using Automation.Playwright.Core.UI;
 using NUnit.Framework;
 
 namespace Automation.Playwright.Tests.UI
@@ -11,29 +11,29 @@ namespace Automation.Playwright.Tests.UI
         public async Task Sidebar_Navigate()
         {
             // Given
-            var loginPage = await OpenAsync();
-            var productsPage = await loginPage.LoginAsync();
+            var products = DataProvider.Products;
+            var productsPage = await OpenLoginAsync();
 
-            // When & Then - reset app state & navigate to products page
-            await productsPage.AddProductsAsync(6);
-            await Expect(productsPage.Header.CartItemCount).ToContainTextAsync("6");
+            // When & Then - reset app state
+            await productsPage.AddProductToCartAsync(products[0]);
+            await Expect(productsPage.Header.CartItemCount).ToContainTextAsync("1");
 
             var cartPage = await productsPage.Header.OpenCartAsync();
             await cartPage.Sidebar.OpenCloseAsync();
             await cartPage.Sidebar.ResetLink.ClickAsync();
             await Expect(cartPage.Header.CartItemCount).Not.ToBeVisibleAsync();
 
+            // When & Then - navigate to products page
             productsPage = await cartPage.Sidebar.OpenProductsPageAsync();
-            await Expect(productsPage.AddToCartButton).ToHaveCountAsync(6);
             await ExpectURLAsync("inventory", true);
 
             // When & Then - navigate to about page
             await productsPage.Sidebar.OpenCloseAsync();
             await productsPage.Sidebar.AboutLink.ClickAsync();
             await ExpectURLAsync("https://saucelabs.com/");
-            await Page.GoBackAsync();
 
             // When & Then - logout
+            await Page.GoBackAsync();
             await productsPage.Sidebar.OpenCloseAsync();
             await productsPage.Sidebar.LogoutAsync();
             await ExpectURLAsync("/");

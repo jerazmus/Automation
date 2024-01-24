@@ -7,24 +7,18 @@ namespace Automation.Playwright.Core.UI.Components
     {
         public ILocator SidebarPanel
             => Page.Locator(".bm-menu-wrap");
-
         public ILocator SidebarOpenButton
             => Page.GetByRole(AriaRole.Button)
                    .Filter(new () { HasText = "Open Menu" });
-
         public ILocator SidebarCloseButton
             => Page.GetByRole(AriaRole.Button)
                    .Filter(new () { HasText = "Close Menu" });
-
         public ILocator AllItemsLink
             => Page.Locator("#inventory_sidebar_link");
-
         public ILocator AboutLink
             => Page.Locator("#about_sidebar_link");
-
         public ILocator LogoutLink
             => Page.Locator("#logout_sidebar_link");
-
         public ILocator ResetLink
             => Page.Locator("#reset_sidebar_link");
 

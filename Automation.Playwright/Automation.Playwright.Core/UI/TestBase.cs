@@ -36,8 +36,16 @@ namespace Automation.Playwright.Core.UI
 
         protected async Task<LoginPage> OpenAsync(string? url = null)
         {
-            await Page.GotoAsync("/");
+            await Page.GotoAsync(url != null ? url : "/");
             return new LoginPage(Page);
+        }
+
+        protected async Task<ProductsPage> OpenLoginAsync()
+        {
+            var loginPage = await OpenAsync();
+            await loginPage.LoginAsync(UserProvider.StandardUser);
+            return new ProductsPage(Page);
+
         }
 
         protected async Task ExpectURLAsync(string url = "", bool partial = false)

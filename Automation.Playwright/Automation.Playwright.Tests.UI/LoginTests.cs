@@ -1,4 +1,5 @@
-﻿using Automation.Playwright.Core.UI;
+﻿using Automation.Playwright.Core.Data;
+using Automation.Playwright.Core.UI;
 using NUnit.Framework;
 
 namespace Automation.Playwright.Tests.UI
@@ -13,7 +14,7 @@ namespace Automation.Playwright.Tests.UI
             var loginPage = await OpenAsync();
 
             // When & Then - login successfully
-            await loginPage.LoginAsync();
+            await loginPage.LoginAsync(UserProvider.StandardUser);
             await ExpectURLAsync("inventory", true);
         }
 

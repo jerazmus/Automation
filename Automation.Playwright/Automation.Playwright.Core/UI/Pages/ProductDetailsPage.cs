@@ -6,18 +6,17 @@ namespace Automation.Playwright.Core.UI.Pages
     {
         public ILocator BackToProductsButton
             => Page.Locator("[data-test='back-to-products']");
-
         public ILocator ProductDetailsContainer
             => Page.Locator(".inventory_details_desc_container");
-
         public ILocator ProductDetailsName
             => ProductDetailsContainer.Locator("div").First;
-
         public ILocator ProductDetailsDescription
             => ProductDetailsContainer.Locator("div").Nth(1);
-
         public ILocator ProductDetailsPrice
             => ProductDetailsContainer.Locator("div").Nth(2);
+        public ILocator AddToCartButton
+            => ProductDetailsContainer.GetByRole(AriaRole.Button)
+                                      .Filter(new () { HasText = "Add to cart" });
 
         public ProductDetailsPage(IPage page) : base(page) { }
 

@@ -6,19 +6,14 @@ namespace Automation.Playwright.Core.UI.Pages
     {
         private ILocator FirstName
             => Page.GetByRole(AriaRole.Textbox).First;
-
         private ILocator LastName
             => Page.GetByRole(AriaRole.Textbox).Nth(1);
-
         private ILocator ZipCode
             => Page.GetByRole(AriaRole.Textbox).Nth(2);
-
         public ILocator ContinueButton
             => Page.Locator("[data-test='continue']");
-
         public ILocator FinishButton
             => Page.Locator("[data-test='finish']");
-
         public ILocator CheckoutHeader
             => Page.Locator(".complete-header");
 
