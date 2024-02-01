@@ -29,11 +29,13 @@ namespace Automation.Playwright.Tests.UI
             await Expect(loginPage.ErrorMessage).ToHaveTextAsync(loginPage.EmptyUsernameErrorMessage);
 
             // WheN & Then - empty password
-            await loginPage.FillLoginInformationAndClickAsync("test");
+            await loginPage.FillCredentialsAsync("test");
+            await loginPage.LoginButton.ClickAsync();
             await Expect(loginPage.ErrorMessage).ToHaveTextAsync(loginPage.EmptyPasswordErrorMessage);
 
             // When & Then - wrong credentials
-            await loginPage.FillLoginInformationAndClickAsync("test", "test");
+            await loginPage.FillCredentialsAsync("test", "test");
+            await loginPage.LoginButton.ClickAsync();
             await Expect(loginPage.ErrorMessage).ToHaveTextAsync(loginPage.WrongCredentialsErrorMessage);
 
             // When & Then - error message disappear

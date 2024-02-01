@@ -26,15 +26,15 @@ namespace Automation.Playwright.Core.UI.Pages
 
         public async Task<ProductsPage> LoginAsync(User user)
         {
-            await FillLoginInformationAndClickAsync(user.Username, user.Password);
+            await FillCredentialsAsync(user.Username, user.Password);
+            await LoginButton.ClickAsync();
             return new ProductsPage(Page);
         }
 
-        public async Task FillLoginInformationAndClickAsync(string username = "", string password = "")
+        public async Task FillCredentialsAsync(string username = "", string password = "")
         {
             await UsernameInput.FillAsync(username);
             await PasswordInput.FillAsync(password);
-            await LoginButton.ClickAsync();
         }
     }
 }

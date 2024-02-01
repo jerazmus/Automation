@@ -7,7 +7,7 @@ namespace Automation.Playwright.Core.Playwright
     {
         public override BrowserNewContextOptions ContextOptions()
         {
-            return new()
+            return new ()
             {
                 BaseURL = "https://www.saucedemo.com",
                 ColorScheme = ColorScheme.Dark,

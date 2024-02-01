@@ -4,9 +4,9 @@ namespace Automation.Playwright.Core.UI.Pages
 {
     public class ProductDetailsPage : PageBase
     {
-        public ILocator BackToProductsButton
+        private ILocator BackToProductsButton
             => Page.Locator("[data-test='back-to-products']");
-        public ILocator ProductDetailsContainer
+        private ILocator ProductDetailsContainer
             => Page.Locator(".inventory_details_desc_container");
         public ILocator ProductDetailsName
             => ProductDetailsContainer.Locator("div").First;
@@ -17,6 +17,9 @@ namespace Automation.Playwright.Core.UI.Pages
         public ILocator AddToCartButton
             => ProductDetailsContainer.GetByRole(AriaRole.Button)
                                       .Filter(new () { HasText = "Add to cart" });
+        public ILocator RemoveFromCartButton
+            => ProductDetailsContainer.GetByRole(AriaRole.Button)
+                                      .Filter(new () { HasText = "Remove" });
 
         public ProductDetailsPage(IPage page) : base(page) { }
 

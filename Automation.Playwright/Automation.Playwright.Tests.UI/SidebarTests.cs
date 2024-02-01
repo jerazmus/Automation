@@ -12,7 +12,7 @@ namespace Automation.Playwright.Tests.UI
         {
             // Given
             var products = DataProvider.Products;
-            var productsPage = await OpenLoginAsync();
+            var productsPage = await OpenAuthAsync();
 
             // When & Then - reset app state
             await productsPage.AddProductToCartAsync(products[0]);

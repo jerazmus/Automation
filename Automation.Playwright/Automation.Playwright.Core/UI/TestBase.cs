@@ -1,4 +1,5 @@
 ﻿using Automation.Playwright.Core.Data;
+using Automation.Playwright.Core.Data.Models;
 using Automation.Playwright.Core.Playwright;
 using Automation.Playwright.Core.UI.Pages;
 using NUnit.Framework;
@@ -34,18 +35,20 @@ namespace Automation.Playwright.Core.UI
 
         }
 
-        protected async Task<LoginPage> OpenAsync(string? url = null)
+        protected async Task<LoginPage> OpenAsync()
         {
-            await Page.GotoAsync(url != null ? url : "/");
+            await Page.GotoAsync("/");
             return new LoginPage(Page);
         }
 
-        protected async Task<ProductsPage> OpenLoginAsync()
+        protected async Task<ProductsPage> OpenAuthAsync(List<Product>? products = null)
         {
             var loginPage = await OpenAsync();
-            await loginPage.LoginAsync(UserProvider.StandardUser);
-            return new ProductsPage(Page);
-
+            if (products != null)
+            {
+                await SetLocalStorageAsync(products);
+            }
+            return await loginPage.LoginAsync(UserProvider.StandardUser);
         }
 
         protected async Task ExpectURLAsync(string url = "", bool partial = false)
@@ -54,6 +57,14 @@ namespace Automation.Playwright.Core.UI
                 ? Expect(Page).ToHaveURLAsync(new Regex($"^.*{url}.*$"))
                 : Expect(Page).ToHaveURLAsync(url);
             await task;
+        }
+
+        protected async Task<ProductsPage> SetLocalStorageAsync(List<Product> products)
+        {
+            var productsIndexArray = products.Select(p => p.Index).ToArray();
+            var indexString = $"[{string.Join(", ", productsIndexArray)}]";
+            await Page.EvaluateAsync<string>($"window.localStorage.setItem('cart-contents', '{indexString}');");
+            return new ProductsPage(Page);
         }
     }
 }
