@@ -12,13 +12,11 @@ namespace Automation.Playwright.Tests.UI
         {
             // Given
             var products = DataProvider.Products;
-            var productsPage = await OpenAuthAsync();
+            var productsPage = await OpenAuthAsync(products);
+            var cartPage = await productsPage.Header.OpenCartAsync();
 
             // When & Then - reset app state
-            await productsPage.AddProductToCartAsync(products[0]);
-            await Expect(productsPage.Header.CartItemCount).ToContainTextAsync("1");
-
-            var cartPage = await productsPage.Header.OpenCartAsync();
+            await Expect(cartPage.Header.CartItemCount).ToContainTextAsync(products.Count.ToString());
             await cartPage.Sidebar.OpenCloseAsync();
             await cartPage.Sidebar.ResetLink.ClickAsync();
             await Expect(cartPage.Header.CartItemCount).Not.ToBeVisibleAsync();
