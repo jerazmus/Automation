@@ -41,7 +41,7 @@ namespace Automation.Playwright.Tests.UI
             await product.ExpectDetailsAsync(productDetailsPage);
 
             // When & Then - go back to products page
-            productsPage = await productDetailsPage.GoBackToProductsPageAsync();
+            await productDetailsPage.GoBackToProductsPageAsync();
             await ExpectURLAsync("inventory", true);
         }
 
