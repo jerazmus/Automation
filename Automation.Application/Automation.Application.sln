@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.Application.API", "Automation.Application.API\Automation.Application.API.csproj", "{26F1B03A-625E-466A-9D5C-D44D8AF3C360}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation.Application.Database", "Automation.Application.Database\Automation.Application.Database.csproj", "{D14254AF-FB6A-4135-A031-B6F04B3FA356}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{26F1B03A-625E-466A-9D5C-D44D8AF3C360}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26F1B03A-625E-466A-9D5C-D44D8AF3C360}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26F1B03A-625E-466A-9D5C-D44D8AF3C360}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D14254AF-FB6A-4135-A031-B6F04B3FA356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D14254AF-FB6A-4135-A031-B6F04B3FA356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D14254AF-FB6A-4135-A031-B6F04B3FA356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D14254AF-FB6A-4135-A031-B6F04B3FA356}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
