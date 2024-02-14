@@ -19,18 +19,16 @@ namespace Automation.Playwright.Core.UI.Pages
         public ProductsPage(IPage page) : base(page) { }
 
         public async Task AddProductToCartAsync(Product product)
-            => await ProductContainer
-                .Filter(new () { Has = Page.Locator($"text='{product.Name}'") })
-                .GetByRole(AriaRole.Button)
-                .Filter(new () { HasText = "Add to cart" })
-                .ClickAsync();
+            => await ProductContainer.Filter(new () { Has = Page.Locator($"text='{product.Name}'") })
+                                     .GetByRole(AriaRole.Button)
+                                     .Filter(new () { HasText = "Add to cart" })
+                                     .ClickAsync();
 
         public async Task RemoveProductFromCartAsync(Product product)
-            => await ProductContainer
-                .Filter(new () { Has = Page.Locator($"text='{product.Name}'") })
-                .GetByRole(AriaRole.Button)
-                .Filter(new () { HasText = "Remove" })
-                .ClickAsync();
+            => await ProductContainer.Filter(new () { Has = Page.Locator($"text='{product.Name}'") })
+                                     .GetByRole(AriaRole.Button)
+                                     .Filter(new () { HasText = "Remove" })
+                                     .ClickAsync();
 
         public async Task AddProductsToCartAsync(List<Product> products)
         {
@@ -42,9 +40,8 @@ namespace Automation.Playwright.Core.UI.Pages
 
         public async Task<ProductDetailsPage> OpenProductDetailsAsync(Product product)
         {
-            await ProductName
-                .Filter(new () { HasText = product.Name })
-                .ClickAsync();
+            await ProductName.Filter(new () { HasText = product.Name })
+                             .ClickAsync();
             return new ProductDetailsPage(Page);
         }
 

@@ -21,11 +21,10 @@ namespace Automation.Playwright.Core.UI.Pages
         public CartPage(IPage page) : base(page) { }
 
         public async Task RemoveFromCartAsync(Product product)
-            => await CartItemContainer
-                .Filter(new () { Has = Page.Locator($"text='{product.Name}'") })
-                .GetByRole(AriaRole.Button)
-                .Filter(new () { HasText = "Remove" })
-                .ClickAsync();
+            => await CartItemContainer.Filter(new () { Has = Page.Locator($"text='{product.Name}'") })
+                                      .GetByRole(AriaRole.Button)
+                                      .Filter(new () { HasText = "Remove" })
+                                      .ClickAsync();
 
         public async Task<ProductsPage> ContinueShoppingAsync()
         {
